@@ -1,0 +1,322 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+
+                <div class="col-md-3">
+                  <div class="form-group mb-3">
+                    <label class="mb-2">Désignation</label>
+                    <input
+                      type="text"
+                      formControlName="designa_article"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': submitted && f['designa_article'].errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submitted && f['nom_article'].errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f['designa_article'].errors">
+                        Le libellé est requis
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="form-group mb-3" data-select2-id="11">
+                    <label class="mb-2">Sous catégorie</label>
+                    <select
+
+                      formControlName="sousCategorie"
+                      id="sousCategorie"
+                      class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                      style="width: 100%; height: 36px"
+                      data-select2-id="1"
+                      tabindex="-1"
+                      aria-hidden="true"
+
+                    >
+                    <option value="">--Select--</option>
+                      <option
+                        *ngFor="let listItem of souscategories"
+                        [ngValue]="listItem"
+                      >
+                        {{ listItem.lib_scat }}
+                      </option>
+
+                    </select>
+                    <div
+                      *ngIf="submitted && f['sousCategorie'].errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f['sousCategorie'].errors">
+                        L'option est requise
+                      </div>
+
+                  </div>
+                </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="form-group mb-3">
+                    <label class="mb-2">Reference</label>
+                    <input
+                      type="text"
+                      formControlName="ref_article"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Code bar</label>
+                  <input
+                    type="text"
+                    formControlName="codebar_article"
+                    class="form-control"
+                  />
+
+              </div>
+              </div>
+
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="fournisseur">Fournisseur</label>
+                  <ng-multiselect-dropdown
+                    formControlName="fournisseur"
+                    [placeholder]="'Sélectionner  option(s)'"
+                    [settings]="fournisseurdropdownSettings"
+                    [data]="fournisseurs"
+                    [(ngModel)]="selectedItemsfournisseur"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Votre point de vente</label>
+                  <select
+                    formControlName="siteDeVente"
+                    id="siteDeVente"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px"
+                    data-select2-id="1"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                  <option value="">--Select--</option>
+                    <option
+                      *ngFor="let listItem of siteDeVentes"
+                      [ngValue]="listItem"
+                    >
+                      {{ listItem.lib_site }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="submitted && f['siteDeVente'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['siteDeVente'].errors">
+                      L'option est requise
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="typeCodeBar">Type de code</label>
+                  <ng-multiselect-dropdown
+                    formControlName="typeCodeBar"
+                    [placeholder]="'Sélectionner  option(s)'"
+                    [settings]="typeCodeBardropdownSettings"
+                    [data]="typeCodeBars"
+                    [(ngModel)]="selectedItemsTypeCodeBar"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+            </div>
+
+            <hr />
+            <div class="row">
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Prix achat gros </label>
+                  <input
+                    type="number"
+                    formControlName="pa_article"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Prix de vente en gros</label>
+                  <input
+                    type="number"
+                    formControlName="pv_article"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Prix unitaire de vente </label>
+                  <input
+                    type="number"
+                    formControlName="pu_article"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Unité de vente</label>
+                  <select
+                    formControlName="uniteMesure"
+                    id="uniteMesure"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px"
+                    data-select2-id="1"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                  <option value="">--Select--</option>
+                    <option
+                      *ngFor="let listItem of uniteMesures"
+                      [ngValue]="listItem"
+                    >
+                      {{ listItem.unite }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="submitted && f['uniteMesure'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['uniteMesure'].errors">
+                      L'option est requise
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Quantité achetée</label>
+                  <input
+                    type="number"
+                    formControlName="qteAchete"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Quantité initiale </label>
+                  <input
+                    type="number"
+                    formControlName="qte_init_article"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Stock alerte </label>
+                  <input
+                    type="number"
+                    formControlName="qte_min_article"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+            </div>
+            <hr />
+            <div class="row">
+
+
+
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Le produit est exonoré</label><br />
+                  <input
+                    formControlName="exonore"
+                    type="checkbox"
+                    (change)="articleExonorer($event)"
+                    class="form-check-input mt-2"
+                    id="customControlAutosizing1"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Date expiration</label>
+                  <input
+                    type="date"
+                    formControlName="date_peremption"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Nouveauté</label><br />
+                  <input
+                    formControlName="nouveaute"
+                    type="checkbox"
+                    (change)="nouveauProduit($event)"
+                    class="form-check-input mt-2"
+                    id="customControlAutosizing1"
+                  />
+                </div>
+              </div>
+            </div>
+            <hr />
+            <br />
+
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="btn btn-success me-3"
+            >
+              {{ btnText }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

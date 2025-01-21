@@ -1,0 +1,155 @@
+<section>
+  <div class="card shadow my-2">
+    <div class="card-header">
+      <div class="row flex-between-center">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="container text-center">
+              <h3>{{ siteName }}</h3>
+            </div>
+          </div>
+
+        </div>
+        <hr />
+
+
+        <div class="col-md-4 d-flex align-items-center pe-0">
+          <h5 class="mb-0 text-nowrap py-2 py-xl-0">{{ titre }}</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="">
+              <input
+                type="search"
+                class="form-control checlBoxDam"
+                placeholder="Rechercher"
+                [(ngModel)]="searchText"
+              />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check mr-sm-2">
+              <input
+                type="checkbox"
+                (change)="afficherTouteLesDonnees($event)"
+                class="form-check-input mt-2"
+                id="customControlAutosizing1"
+              />
+              <label
+                class="form-check-label mb-0 m-1"
+                for="customControlAutosizing1"
+                >{{ afficherTout }}</label
+              >
+            </div>
+
+          </div>
+          <div class="col-md-2">
+ 
+        </div>
+        </div>
+        <div class="col-md-8 ms-auto text-end ps-0">
+          <h6>Total : {{ totalrow }}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-0 m-3">
+      <div class="table-responsive">
+        <table class="table table-striped mb-0">
+          <thead class="arrierePlan">
+            <th>DATE</th>
+            <th>DESIGNATION </th>
+            <th>COMMANDE</th>
+            <th>RECEPTION</th>
+
+            <th>CMUP</th>
+            <th>STOCK</th>
+            <th>VALEUR STCK</th>
+            <th>APPRECIATION</th>
+
+
+            <th style="display: none">Etat</th>
+            <th>ACTIONS</th>
+          </thead>
+          <tbody  class="tbody">
+            <tr
+              *ngFor="
+                let dataList of receptions
+                  | customFilter : searchText
+                  | paginate
+                    : {
+                        itemsPerPage:25,
+                        currentPage: p,
+                        totalItems: totalrow
+                      }
+              "
+              [style.background]="dataList.supprime == true ? 'red' : 'white'"
+              [style.color]="dataList.supprime == true ? 'white' : 'black'"
+            >
+              <td>{{ dataList.datereception |date:'dd/MM/yyyy'}}</td>
+              <td>{{ dataList.commandeChezFournisseur.marchandiseentree?.designation_march }}</td>
+              <td>{{ dataList.qteactuelCmd }}</td>
+              <td>{{ dataList.quantite }}</td>
+              <td>{{ dataList.cmup }}</td>
+              <td>{{ dataList.stock }}</td>
+              <td>{{ dataList.valrStock }}</td>
+              <td>{{ dataList.appreciation }}</td>
+      
+              <td style="display: none">{{ dataList.supprime }}</td>
+              <td class="white-space-nowrap">
+             
+                <a
+                  (click)="delete(dataList)"
+                  class="supprimer"
+                  placement="bottom"
+                  title="Supprimer"
+                  *ngIf="dataList.supprime == false"
+                >
+                <i class="me-2 mdi mdi-delete"></i>
+                </a>
+                <a
+                  (click)="restore(dataList)"
+                  class="supprimer"
+                  placement="bottom"
+                  title="Restaurer"
+                  *ngIf="dataList.supprime == true"
+                >
+                <i class="me-2 mdi mdi-redo-variant"></i>
+              </a>
+
+          <!--
+
+              <a
+                  title="Détail"
+                  (click)="details(dataList.identree)"
+                  class="detail"
+                  *ngIf="dataList.supprime == false"
+                >
+                <i class="me-2 mdi mdi-eye"></i>
+                </a>
+          -->
+
+
+
+
+
+              </td>
+
+
+            </tr>
+            <tr *ngIf="totalrow === 0">
+              <td colspan="5">
+                <div class="alert alert-danger">{{ message }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel=""
+      nextLabel=""
+    ></pagination-controls>
+  </div>
+
+</section>

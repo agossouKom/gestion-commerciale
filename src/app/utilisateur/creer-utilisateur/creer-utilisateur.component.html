@@ -1,0 +1,266 @@
+<div
+  class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark"
+>
+  <div class="auth-box bg-dark border-top border-secondary">
+    <div>
+      <div class="text-center pt-3 pb-3">
+        <span class="db"
+          ><img src="../assets/images/logo.png" alt="logo"
+        /></span>
+      </div>
+      <!-- Form -->
+      <form
+        class="form-horizontal mt-3"
+        [formGroup]="signupForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="row pb-4">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-md-6">
+                <!-- nom -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text bg-success text-white h-100"
+                      id="basic-addon1"
+                      ><i class="mdi mdi-account fs-4"></i
+                    ></span>
+                  </div>
+                  <input
+                    formControlName="nom"
+                    placeholder="Entrez votre nom"
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Nom"
+                    aria-label="nom"
+                    aria-describedby="basic-addon1"
+                    required
+                  />
+                </div>
+                <!-- end nom;e -->
+              </div>
+              <div class="col-md-6">
+                <!-- prenoms -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text bg-success text-white h-100"
+                      id="basic-addon1"
+                      ><i class="mdi mdi-account fs-4"></i
+                    ></span>
+                  </div>
+                  <input
+                    formControlName="prenoms"
+                    placeholder="Entrez prénom"
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="prenoms"
+                    aria-label="prenoms"
+                    aria-describedby="basic-addon1"
+                    required
+                  />
+                </div>
+                <!-- end usernq;e -->
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="site">Site de vente</label>
+                  <ng-multiselect-dropdown
+                    formControlName="site"
+                    [placeholder]="'sites de vente'"
+                    [settings]="siteVentedownSettings"
+                    [data]="siteDeVentes"
+                    [(ngModel)]="selectedItemsSiteVente"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="roles">Roles</label>
+                  <ng-multiselect-dropdown
+                    formControlName="roles"
+                    [placeholder]="'Sélectionner roles'"
+                    [settings]="roledropdownSettings"
+                    [data]="roles"
+                    [(ngModel)]="selectedItemsrole"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-10 mb-3">
+                  <label class="px-3">Select File: </label>
+                  <input type="file" (change)="selectFile($event)" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="photo">Photo</label>
+                  <ng-multiselect-dropdown
+                    formControlName="photo"
+                    [placeholder]="'Sélectionner photo'"
+                    [settings]="phtoedropdownSettings"
+                    [data]="photo"
+                    [(ngModel)]="selectedItemsPhoto"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+              <div class="col-md-6">
+                <!-- username -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text bg-success text-white h-100"
+                      id="basic-addon1"
+                      ><i class="mdi mdi-account fs-4"></i
+                    ></span>
+                  </div>
+                  <input
+                    formControlName="username"
+                    placeholder="Entez votre identifiant"
+                    type="text"
+                    class="form-control form-control-lg"
+               
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    required
+                  />
+                </div>
+                <!-- end usernq;e -->
+              </div>
+              <div class="col-md-6">
+                <!-- no; -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text bg-info text-white h-100"
+                      id="basic-addon2"
+                      ><i class="mdi mdi-lock fs-4"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="password"
+                    formControlName="password"
+                 
+                    class="form-control form-control-lg"
+                    aria-label="Password"
+                    aria-describedby="basic-addon1"
+                    required
+                  />
+                </div>
+                <!-- end no; -->
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              
+              <div class="col-md-12">
+ 
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text bg-danger text-white h-100"
+                      id="basic-addon1"
+                      ><i class="mdi mdi-email fs-4"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    placeholder="Entez votre email"
+                    class="form-control form-control-lg"
+                  
+                    aria-label="email"
+                    aria-describedby="basic-addon1"
+                    required
+                  />
+                </div>
+             
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <div class="mb-3">
+          <a routerLink="/login">Se connecter</a>
+        </div>
+        <div class="row border-top border-secondary">
+          <div class="col-6">
+            <div class="form-group">
+              <div class="pt-3 d-grid">
+                <button class="btn btn-info btn-sm" type="submit">
+                  Sauvegarder
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <div class="pt-3 d-grid">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm text-white"
+                  (click)="btnCancel()"
+                >
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--   <div class="row">
+        <div class="col-md-6">
+          <div class="container d-flex justify-content-center">
+            <div class="mt-5 row justify-content-center">
+              <div class="col-10 mb-3">
+                <label class="px-3">Select File: </label>
+                <input type="file" (change)="selectFile($event)" />
+              </div>
+              <div class="col-2">
+                <button class="btn btn-success btn-sm" (click)="uploadFile()">
+                  Upload
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="container">
+            <div class="mt-5 row justify-content-center">
+              <div class="col-10 mb-3">
+                <ul>
+                  <li *ngFor="let link of fileUris">
+                    <a href="{{ link }}" target="_blank">{{ link }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  -->

@@ -1,0 +1,148 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="row card-header border-bottom">
+          <div class="col-md-8">
+            <h4>{{ title }}</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Article</label>
+                  <select
+                    [compareWith]="compareData"
+                    formControlName="marchandise"
+                    id="marchandise"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px"
+                    data-select2-id="1"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                    <option value="">--Select--</option>
+                    <option
+                      *ngFor="let listItem of marchandise"
+                      [ngValue]="listItem"
+                    >
+                      {{ listItem.designation_march }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="submitted && f['uniteVente'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['uniteVente'].errors">
+                      L'option est requise
+                    </div>
+                    <span
+                      *ngIIf="!conditionOk"
+                      class="error alert alert-danger"
+                    >
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Unité de vente</label>
+                  <select
+                    [compareWith]="compareData"
+                    formControlName="uniteVente"
+                    id="uniteVente"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px"
+                    data-select2-id="1"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    [(ngModel)]="selectedItem"
+                    (change)="getSelectedItemValue($event)"
+                  >
+                    <option value="">--Select--</option>
+                    <option
+                      *ngFor="let listItem of uniteMesures"
+                      [ngValue]="listItem"
+                    >
+                      {{ listItem.unite }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="submitted && f['uniteVente'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['uniteVente'].errors">
+                      L'option est requise
+                    </div>
+                    <span
+                      *ngIIf="!conditionOk"
+                      class="error alert alert-danger"
+                    >
+                      unite de vente incorrecte
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group mb-3" *ngIf="package">
+                  <label class="mb-2"
+                    >Le pack contient combien de pièces?</label
+                  >
+                  <input
+                    type="number"
+                    formControlName="nbrePiece"
+                    (keyup)="calculerPaht()"
+                    [(ngModel)]="packDeN"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid': submitted && f['nbrePiece'].errors
+                    }"
+                  />
+                  <div
+                    *ngIf="submitted && f['nbrePiece'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['nbrePiece'].errors">
+                      Le nombre de pièces est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group mb-3" *ngIf="visible">
+                  <label class="mb-2">Article</label>
+                  <input  type="number"
+                    formControlName="marchandise"
+                    class="form-control"
+                    [(ngModel)]="libMarchandise"
+                    [value]="marchId"
+                  />
+                </div>
+              </div>
+
+            </div>
+            <hr />
+
+            <button type="submit" class="btn btn-success me-3">
+              {{ btnText }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

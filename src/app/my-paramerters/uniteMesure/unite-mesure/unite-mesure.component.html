@@ -1,0 +1,72 @@
+<p>add-mode-transport works!</p>
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="form-group mb-3">
+                <label class="mb-2">Unite de mesure </label>
+                <input
+                  type="text"
+                  formControlName="unite"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f['unite'].errors }"
+                />
+                <div
+                  *ngIf="submitted && f['unite'].errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f['unite'].errors">Le libellé est requis</div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mb-2">Abréviation </label>
+                <input
+                  type="text"
+                  formControlName="abreviation"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && f['abreviation'].errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && f['abreviation'].errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f['abreviation'].errors">
+                    Le libellé est requis
+                  </div>
+                </div>
+              </div>
+              <!--<div class="form-group mb-3">
+                <label class="mb-2">Constituant</label>
+                <input type="number" formControlName="constituant" class="form-control"   />
+
+               </div>-->
+            </div>
+
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="btn btn-success me-3"
+            >
+              {{ btnText }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,170 @@
+{
+  "identree": 0,
+  "dateentree": "2023-11-21T22:07:05.578Z",
+  "echeance": "2023-11-21T22:07:05.578Z",
+  "dateReception": "2023-11-21T22:07:05.578Z",
+  "date_peremption_art": "2023-11-21T22:07:05.579Z",
+  "modeReglement": {
+    "id": 0,
+    "lib_mode_rglt": "string",
+    "supprime": true
+  },
+  "marchandiseentree": {
+    "id": 0,
+    "ref_march": "string",
+    "designation_march": "string",
+    "createdAt": "2023-11-21T22:07:05.579Z",
+    "nouveaute": true,
+    "exonore": true,
+    "description": "string",
+    "seuil_alerte": 0,
+    "fournisseur": [
+      {
+        "id": 0,
+        "nomFsr": "string",
+        "adresse_fsr": "string",
+        "tel_fsr": "string",
+        "email_fsr": "string",
+        "fax_fsr": "string",
+        "matfisc_fsr": "string",
+        "sold_init_fsr": 0,
+        "solde_final_fsr": 0,
+        "franco": 0,
+        "created_fsr_at": "2023-11-21T22:07:05.579Z",
+        "banque": [
+          {
+            "id": 0,
+            "libelle_bk": "string",
+            "code": "string",
+            "abrege": "string",
+            "supprime": true
+          }
+        ],
+        "devise": [
+          {
+            "id": 0,
+            "libelleDevise": "string",
+            "symboleIcon": "string",
+            "deviseAbrege": "string",
+            "supprime": true
+          }
+        ],
+        "pays": {
+          "idPays": 0,
+          "imageDrapeau": "string",
+          "nomPays": "string",
+          "longitude": 0,
+          "latitude": 0,
+          "altitude": 0,
+          "rayon": 0,
+          "devise": {
+            "id": 0,
+            "libelleDevise": "string",
+            "symboleIcon": "string",
+            "deviseAbrege": "string",
+            "supprime": true
+          },
+          "supprime": true
+        },
+        "supprime": true
+      }
+    ],
+    "typeCodeBar": [
+      {
+        "id": 0,
+        "lib_code_bar": "string",
+        "supprime": true
+      }
+    ],
+    "photo": [
+      {
+        "id": 0,
+        "photoName": "string",
+        "supprime": true
+      }
+    ],
+    "sousCategorie": {
+      "id": 0,
+      "lib_scat": "string",
+      "categorie": {
+        "id": 0,
+        "lib_cat": "string",
+        "rayonCategorie": {
+          "id": 0,
+          "catRayon": "string",
+          "supprime": true
+        },
+        "supprime": true
+      },
+      "supprime": true
+    },
+    "disponible": true,
+    "iscondvent": true,
+    "supprime": true
+  },
+  "uniteVente": {
+    "id": 0,
+    "unite": "string",
+    "abreviation": "string",
+    "constituant": 0,
+    "supprime": true
+  },
+  "fournisseur": {
+    "id": 0,
+    "nomFsr": "string",
+    "adresse_fsr": "string",
+    "tel_fsr": "string",
+    "email_fsr": "string",
+    "fax_fsr": "string",
+    "matfisc_fsr": "string",
+    "sold_init_fsr": 0,
+    "solde_final_fsr": 0,
+    "franco": 0,
+    "created_fsr_at": "2023-11-21T22:07:05.579Z",
+    "banque": [
+      {
+        "id": 0,
+        "libelle_bk": "string",
+        "code": "string",
+        "abrege": "string",
+        "supprime": true
+      }
+    ],
+    "devise": [
+      {
+        "id": 0,
+        "libelleDevise": "string",
+        "symboleIcon": "string",
+        "deviseAbrege": "string",
+        "supprime": true
+      }
+    ],
+    "pays": {
+      "idPays": 0,
+      "imageDrapeau": "string",
+      "nomPays": "string",
+      "longitude": 0,
+      "latitude": 0,
+      "altitude": 0,
+      "rayon": 0,
+      "devise": {
+        "id": 0,
+        "libelleDevise": "string",
+        "symboleIcon": "string",
+        "deviseAbrege": "string",
+        "supprime": true
+      },
+      "supprime": true
+    },
+    "supprime": true
+  },
+  "qteentree": 0,
+  "montantTotalentree": 0,
+  "montant_e_ht": 0,
+  "montant_e_ttc": 0,
+  "refentree": "string",
+  "supprime": true,
+  "cmde_en_ligne_f": true,
+  "estFacturer": true,
+  "estReceptioned": true
+}

@@ -1,0 +1,30 @@
+
+
+.stile{
+margin:10px;
+border:3px double blue;
+border-radius: 10px;
+
+padding: 10px;
+/**text-shadow: 2px 2px 4px black;**/
+}
+.articleName{
+  margin:5px;
+  border:3px solid rgb(255, 196, 0);
+  border-radius: 5px;
+  padding: 5px;
+  }
+  
+.title:hover {
+	background-color: #10ce10;
+  box-shadow: inset 5px 0px 0px 0px #fff;
+}
+
+
+.title {
+	font-size: 7px;
+	background: #282e33!important;
+	cursor: pointer;
+  transition: all .25s;
+}
+

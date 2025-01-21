@@ -1,0 +1,127 @@
+
+
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>
+            <h2>{{ showTitre }}</h2>
+          </h4>
+        </div>
+        <div class="card-body" *ngIf="article">
+
+          <div class="row">
+            <div class="col-md-4">
+              <label><b>Quantité ajoutée: </b></label> {{ article.qteAchete }}
+            </div>
+
+            <div class="col-md-4">
+              <label><b>Ajouter le: </b></label> {{ article.createdAt }}
+            </div>
+            <div class="col-md-3">
+              <label><b>Expire le: </b></label>
+              {{ article.date_peremption }}
+            </div>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-md-3">
+              <label><b>Ref article: </b></label> {{ article.ref_article }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Désignation: </b></label> {{ article.designa_article }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Code bar: </b></label> {{ article.codebar_article }}
+            </div>
+            <div class="col-md-3">
+              <label><b>Exonoré: </b></label>
+              {{ article.exonore == true ? "Oui" : "Non" }}
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-3">
+              <label><b>Nouveauté: </b></label>
+              {{ article.nouveaute == true ? "Oui" : "Non" }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Prix achat: </b></label> {{ article.pa_article }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Prix de vente: </b></label> {{ article.pv_article }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Unité: </b></label> {{ article.uniteMesure?.unite }}
+            </div>
+
+          </div>
+
+          <hr />
+
+          <div class="row">
+            <div class="col-md-3">
+              <label><b>Quantite initiale: </b></label>
+              {{ article.qte_init_article }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Stock alerte : </b></label>
+              {{ article.qte_min_article }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Prix unitaire : </b></label> {{ article.pu_article }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Type de code </b></label>
+              <div *ngFor="let dataList of typeCodeBars">
+                {{ dataList.lib_code_bar }}
+              </div>
+            </div>
+
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-3">
+              <label><b>Fournisseur </b></label>
+              <div *ngFor="let dataList of fournisseur">
+                {{ dataList.nomFsr }}
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Categorie: </b></label>
+              {{ article.sousCategorie?.categorie?.lib_cat }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Sous Categorie: </b></label>
+              {{ article.sousCategorie?.lib_scat }}
+            </div>
+
+            <div class="col-md-3">
+              <label><b>Site de vente: </b></label>
+              {{ article.siteDeVente?.lib_site }}
+            </div>
+
+
+          </div>
+<hr />
+
+
+        </div>
+      </div>
+      <button routerLink="/listArticle" class="btn btn-primary">Retour</button
+      ><br />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,108 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-12" *ngIf="marchandise">
+    <div class="card shadow">
+      <div class="card-header border-bottom">
+        <div class="row">
+          <div class="col-md-10 arrierePlan">
+            <h4>
+              <h2>{{ showTitre }}</h2>
+            </h4>
+          </div>
+          <div class="col-md-2">
+            <img
+              class="card-img-top img-responsive"
+              href=""
+              src="{{ this.service.baseUrlPhoto + marchandise.id }}"
+              style="height: 100px; width: fil-content"
+              alt="indisponible"
+            />
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="row">
+              <div class="col-md-3">
+                <label><b>Reference: </b></label> {{ marchandise.ref_march }}
+              </div>
+
+              <div class="col-md-3">
+                <label><b>Désignation: </b></label>
+                {{ marchandise.designation_march }}
+              </div>
+
+
+            </div>
+            <hr />
+
+            <div class="row">
+
+              <!--     <div class="col-md-3">
+                <label><b>Stock initial: </b></label>
+                {{ marchandise.stk_init_march }}
+              </div>  -->
+
+              <div class="col-md-3">
+                <label><b>Seuil d'alerte: </b></label>
+                {{ marchandise.seuil_alerte }}
+              </div>
+
+            </div>
+            <hr />
+
+            <div class="row">
+
+
+              <div class="col-md-3">
+                <label><b>Description: </b></label>
+                {{ marchandise.description }}
+              </div>
+              <div class="col-md-3">
+                <label><b>Categorie: </b></label>
+                {{ marchandise.sousCategorie?.categorie?.lib_cat }}
+              </div>
+
+              <div class="col-md-3">
+                <label><b>Sous Categorie: </b></label>
+                {{ marchandise.sousCategorie?.lib_scat }}
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="col-md-3">
+                <label><b>Fournisseur </b></label>
+                <div *ngFor="let dataList of fournisseur">
+                  {{ dataList.nomFsr }}
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label><b>Type de code </b></label>
+                <div *ngFor="let dataList of typeCodeBars">
+                  {{ dataList.lib_code_bar }}
+                </div>
+              </div>
+
+
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-3">
+                <label><b>Exonoré: </b></label>
+                {{ marchandise.exonore == true ? "Oui" : "Non" }}
+              </div>
+              <div class="col-md-3">
+                <label><b>Nouveauté: </b></label>
+                {{ marchandise.nouveaute == true ? "Oui" : "Non" }}
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+    <button routerLink="/listeMarchandise" class="btn btn-primary arrierePlan">
+      Retour</button
+    ><br />
+  </div>
+</div>

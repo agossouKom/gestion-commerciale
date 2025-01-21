@@ -1,0 +1,105 @@
+
+
+<h2>Détails</h2>
+
+<hr />
+<div *ngIf="societe">
+  <div>
+    <label><b>Raison sociale : </b></label> {{societe.nom_ste}}
+  </div>
+  <div>
+    <label><b>Abreviation: </b></label> {{societe.abrege_ste}}
+  </div>
+  <div>
+    <label><b>Tel mobile: </b></label> {{societe.tel_moile_ste}}
+  </div>
+  <div>
+    <label><b>Tel fxe : </b></label> {{societe.tel_fixe_ste}}
+  </div>
+  <div>
+    <label><b>Faxe: </b></label> {{societe.fax_ste}}
+  </div>
+  <div>
+    <label><b>Matricule: </b></label> {{societe.matricule_ste}}
+  </div>
+  <div>
+    <label><b>Rib: </b></label> {{societe.rib_ste}}
+  </div>
+
+  <div>
+    <label><b>RCCM: </b></label> {{societe.rccm_ste}}
+  </div>
+  <div>
+    <label><b>IFU: </b></label> {{societe.ifu_ste}}
+  </div>
+  <div>
+    <label><b>Email : </b></label> {{societe.email_ste}}
+  </div>
+  <div>
+    <label><b>Boite postale: </b></label> {{societe.bp_ste}}
+  </div>
+  <div>
+    <label><b>Date creation: </b></label> {{societe.dateCreation}}
+  </div>
+  <div>
+    <label><b>Numero autorisation : </b></label> {{societe.numAutorisation}}
+  </div>
+  <div>
+    <label><b>Statut: </b></label> {{societe.statutSte}}
+  </div>
+
+
+  <div>
+    <label><b>Siret: </b></label> {{societe.siret}}
+  </div>
+
+  <div>
+    <label><b>Site web: </b></label> {{societe.siteweb}}
+  </div>
+
+  <div>
+    <label><b>Photo: </b></label> {{societe.photo}}
+  </div>
+
+  <label><b>Banque: </b></label>
+  <div *ngFor="let dataList of banqueListes">
+   {{dataList.libelle_bk}}
+  </div>
+
+  <label><b>Fournisseur: </b></label>
+  <div *ngFor="let dataList of fournisseur">
+    {{dataList.nomFsr}}
+  </div>
+  <label><b>Mode de reglement: </b></label>
+  <div *ngFor="let dataList of modereglement">
+    {{dataList.lib_mode_rglt}}
+  </div>
+  <label><b>Mode de transport: </b></label>
+  <div *ngFor="let dataList of modeTransport">
+    {{dataList.lib_transp}}
+  </div>
+  <label><b>Tva: </b></label>
+  <div *ngFor="let dataList of tvaGlobale">
+    {{dataList.tauxTva}}
+  </div>
+  <label><b>Mode expedition:</b></label>
+  <div *ngFor="let dataList of modeExpedition">
+    {{dataList.lib_exped}}
+  </div>
+  <label><b>Devise: </b></label>
+  <div *ngFor="let dataList of devise">
+    {{dataList.deviseAbrege}}
+  </div>
+  <div>
+    <label><b>Pays: </b></label> {{societe.pays?.nomPays}}
+  </div>
+
+
+</div>
+
+<br>
+<br>
+<button routerLink="/listSociete" class="btn btn-primary">Retour</button><br>
+
+
+

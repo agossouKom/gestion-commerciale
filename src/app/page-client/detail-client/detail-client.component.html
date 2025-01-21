@@ -1,0 +1,48 @@
+
+
+<h2>Détails</h2>
+
+<hr />
+<div *ngIf="client">
+  <div>
+    <label><b>Nom: </b></label> {{client.nom}}
+  </div>
+  <div>
+    <label><b>Prénom: </b></label> {{client.prenom}}
+  </div>
+
+  <div>
+    <label><b>Raison sociale: </b></label> {{client.raisonSocialeClient}}
+  </div>
+  <div>
+    <label><b>Ifu : </b></label> {{client.ifuClient}}
+  </div>
+  <div>
+    <label><b>Adresse: </b></label> {{client.adresse}}
+  </div>
+  <div>
+    <label><b>Telephone: </b></label> {{client.tel_clt}}
+  </div>
+
+  <div>
+    <label><b>Fax: </b></label> {{client.fax_clt}}
+  </div>
+  <div>
+    <label><b>Email: </b></label> {{client.email_clt}}
+  </div>
+  <label><b>Banques </b></label>
+  <div *ngFor="let dataList of banqueListes">
+    {{dataList.libelle_bk}}
+  </div>
+  <div>
+    <label><b>Site de vente : </b></label> {{client.siteDeVente?.lib_site}}
+  </div>
+
+</div>
+
+<br>
+<br>
+<button routerLink="/listClient" class="btn btn-primary">Retour</button><br>
+
+
+

@@ -1,0 +1,214 @@
+<!-- Nav tabs -->
+<div class="card">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#annee"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Annee et exercice</span></a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#devise"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Devise</span></a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        data-bs-toggle="tab"
+        href="#pays"
+        role="tab"
+        aria-selected="true"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Pays</span></a
+      >
+    </li>
+
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#departement"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Departement</span></a
+      >
+    </li>
+
+
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#ville"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Ville</span></a
+      >
+    </li>
+
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#arrondissement"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Arrondissement</span></a
+      >
+    </li>
+
+
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#quartier"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Quartier</span></a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#siteDeVente"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Site</span></a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#fondateur"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Fondateur</span></a
+      >
+    </li>
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        data-bs-toggle="tab"
+        href="#entreprise"
+        role="tab"
+        aria-selected="false"
+        ><span class="hidden-sm-up"></span>
+        <span class="hidden-xs-down">Entreprise</span></a
+      >
+    </li>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content tabcontent-border">
+    <div class="tab-pane" id="annee" role="tabpanel">
+      <div class="row p-20">
+        <div class="row">
+          <div class="col-md-12">
+            <app-liste-annee></app-liste-annee>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="devise" role="tabpanel">
+      <div class="p-20">
+        <div class="row">
+          <div class="col-md-12">
+            <app-list-devise></app-list-devise>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="pays" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-4">
+          <app-list-pays></app-list-pays>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="departement" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-4">
+          <app-liste-departementt></app-liste-departementt>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="ville" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-4">
+          <app-liste-ville></app-liste-ville>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="arrondissement" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-4">
+          <app-liste-arrondissementt></app-liste-arrondissementt>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="quartier" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-4">
+          <app-liste-quartier></app-liste-quartier>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="siteDeVente" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-12">
+          <app-liste-site></app-liste-site>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="fondateur" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-4">
+          <app-liste-fondateur></app-liste-fondateur>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tab-pane" id="entreprise" role="tabpanel">
+      <div class="p-20">
+        <div class="col md-4">
+          <app-liste-entreprise></app-liste-entreprise>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

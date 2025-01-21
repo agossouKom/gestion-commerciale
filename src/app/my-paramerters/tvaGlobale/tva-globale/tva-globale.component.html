@@ -1,0 +1,53 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+
+              <div class="form-group mb-3">
+                <label class="mb-2">Taux en %</label>
+                <input type="text" formControlName="tauxTva" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f['tauxTva'].errors }" />
+                <div *ngIf="submitted && f['tauxTva'].errors" class="invalid-feedback">
+                    <div *ngIf="f['tauxTva'].errors">Le taux est requis</div>
+                </div>
+               </div>
+            </div>
+
+            <div class="form-group mb-3"  style="display: none">
+              <label class="mb-2">Annee</label>
+              <input type="text" formControlName="anneeExercice" class="form-control" [(ngModel)]="anneeList"
+                     [ngClass]="{ 'is-invalid': submitted && f['anneeExercice'].errors }" />
+              <div *ngIf="submitted && f['anneeExercice'].errors" class="invalid-feedback">
+                  <div *ngIf="f['anneeExercice'].errors">Le taux est requis</div>
+              </div>
+             </div>
+       
+
+
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="btn btn-success me-3"
+            >
+              {{ btnText }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

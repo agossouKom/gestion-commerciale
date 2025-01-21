@@ -1,0 +1,249 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Article</label>
+                  <select [compareWith]="compareData" formControlName="marchandiseentree" id="marchandiseentree"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px" data-select2-id="1" tabindex="-1" aria-hidden="true"
+                    [(ngModel)]="selectedItem" (change)="getSelectedItemValue($event)">
+                    <option *ngFor="let listItem of marchandises" [ngValue]="listItem">
+                      {{ listItem.designation_march }}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f['marchandiseentree'].errors" class="invalid-feedback">
+                    <div *ngIf="f['marchandiseentree'].errors">
+                      L'option est requise
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Commande en ligne</label><br />
+                  <input formControlName="cmde_en_ligne_f" type="checkbox" (change)="cmdEnLigne($event)"
+                    class="form-check-input mt-2" id="customControlAutosizing1" />
+                </div>
+              </div>
+
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Reference</label>
+                  <input type="text" formControlName="refentree" class="form-control" />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Mode de paiement</label>
+                  <select [compareWith]="compareData" formControlName="modeReglement" id="modeReglement"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                    <option value="">--Select--</option>
+                    <option *ngFor="let listItem of modeReglement" [ngValue]="listItem">
+                      {{ listItem.lib_mode_rglt }}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f['modeReglement'].errors" class="invalid-feedback">
+                    <div *ngIf="f['modeReglement'].errors">
+                      L'option est requise
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+
+            <div class="row detailArt" *ngIf="visible">
+              <div class="col-md-3">
+                <div class="form-group mb-4">
+                  <label class="mb-2 bgLabel">Fournisseur</label>
+                  <br />
+                  <label class="mb-2"> {{ fournisseur }}</label> <br />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group mb-4">
+                  <label class="mb-2 bgLabel">unité de vente possible</label>
+                  <div *ngFor="let data of conditionnementvente" a>
+                    <div class="row">
+                      <div class="col-md-2">
+                        <input type="checkbox" name="{{ data.uniteVente?.unite }}"
+                          (change)="getUniteVenteCheckedValueId($event)" class="form-check-input mt-2 perso"
+                          id="{{ data.uniteVente?.id }}" value="{{ data.uniteVente?.unite }}" [disabled]="isActive" />
+                      </div>
+                      <div class="col-md-10">
+                        <label class="form-check-label mb-0 m-1">
+                          {{ data.uniteVente?.unite }}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2 bgLabel">Prix de vente </label>
+                  <div *ngFor="let data of conditionnementvente">
+                    <label class="mb-2">
+                      {{ data.prixVente }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2 bgLabel">Prix d'achat</label>
+                  <div *ngFor="let data of conditionnementvente">
+                    <label class="mb-2">
+                      {{ data.prixAchat }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!--
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2 bgLabel">Sous catégorie</label>
+                  <div>
+                    <label class="mb-2"> {{ scatProcuct }} </label>
+                  </div>
+                </div>
+              </div>
+-->
+              <!--   <div class="col-md-3">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Annee exercice</label>
+                  <select
+                    [compareWith]="compareDataAnnee"
+                    formControlName="anneeExercice"
+                    id="anneeExercice"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px"
+                    data-select2-id="1"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                    <option value="">--Select--</option>
+                    <option
+                      *ngFor="let listItem of annee"
+                      [ngValue]="listItem"
+                    >
+                      {{ listItem.libelleAnSco }}
+                    </option>
+                  </select>
+
+                </div>
+              </div> -->
+            </div>
+            <hr *ngIf="visible" />
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Quantité </label>
+                  <input type="number" formControlName="qteentree" class="form-control" [ngClass]="{
+                    'is-invalid': submitted && f['qteentree'].errors
+                  }" (keyup)="calculerPahtQte()" [(ngModel)]="qteAchetee" />
+                  <div *ngIf="submitted && f['qteentree'].errors" class="invalid-feedback">
+                    <div *ngIf="f['qteentree'].errors">
+                      la quantité est requise
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Montant HT</label>
+                  <input type="number" formControlName="montant_e_ht" class="form-control" [(ngModel)]="paht" />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Montant TTC</label>
+                  <input type="number" formControlName="montant_e_ttc" class="form-control" [(ngModel)]="mTTC" />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Montant total TTC</label>
+                  <input type="number" formControlName="montantTotalentree" class="form-control" [(ngModel)]="mTTC" />
+                </div>
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+
+
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Echéance paiement</label>
+                  <input type="date" formControlName="echeance" class="form-control" [ngClass]="{
+                      'is-invalid': submitted && f['echeance'].errors
+                    }" />
+                  <div *ngIf="submitted && f['echeance'].errors" class="invalid-feedback">
+                    <div *ngIf="f['echeance'].errors">
+                      Le libell& est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Date de reception</label>
+                  <input type="date" formControlName="dateReception" class="form-control" [ngClass]="{
+                      'is-invalid': submitted && f['dateReception'].errors
+                    }" />
+                  <div *ngIf="submitted && f['dateReception'].errors" class="invalid-feedback">
+                    <div *ngIf="f['dateReception'].errors">
+                      Le libell& est requis
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Date expiration</label>
+                  <input type="date" formControlName="date_peremption_art" class="form-control" />
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <button [disabled]="loading" type="submit" class="btn btn-success me-3">
+              {{ btnText }}
+            </button>
+            <button type="button" class="btn btn-outline-danger" (click)="btnCancel()">
+              Annuler
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

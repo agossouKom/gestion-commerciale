@@ -1,0 +1,65 @@
+<section>
+  <div class="row d-flex justify-content-center">
+      <div class="col-md-4">
+          <div class="card shadow">
+              <div class="card-header border-bottom">
+                  <h4>{{title}}</h4>
+              </div>
+              <div class="card-body">
+                  <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+                      <div class="row">
+                          <div class="form-group mb-3">
+                              <label class="mb-2">Libelle</label>
+                              <input type="text" formControlName="libelleAnSco" class="form-control"
+                                     [ngClass]="{ 'is-invalid': submitted && f['libelleAnSco'].errors }" />
+                              <div *ngIf="submitted && f['libelleAnSco'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['libelleAnSco'].errors">Le libelle est requis</div>
+                              </div>
+                          </div>
+                          <div class="form-group mb-3">
+                              <label class="mb-2">Date d'ébut</label>
+                              <input type="date" formControlName="dateDebutAnSco" class="form-control"
+                                     [ngClass]="{ 'is-invalid': submitted && f['dateDebutAnSco'].errors }" />
+                              <div *ngIf="submitted && f['dateDebutAnSco'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['dateDebutAnSco'].errors">Date d'ébut est requise</div>
+                              </div>
+                          </div>
+                          <div class="form-group mb-3">
+                            <label class="mb-2">Date fin</label>
+                            <input type="date" formControlName="dateFinAnSco" class="form-control"
+                                   [ngClass]="{ 'is-invalid': submitted && f['dateFinAnSco'].errors }" />
+                            <div *ngIf="submitted && f['dateFinAnSco'].errors" class="invalid-feedback">
+                                <div *ngIf="f['dateFinAnSco'].errors">Date fin est requise</div>
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-3 m-3">
+                          <input
+                            type="checkbox"
+                            (change)="setTocurrentData($event)"
+                            class="form-check-input mt-2"
+                            id="customControlAutosizing1"
+                            name="current" 
+                            formControlName="current"
+                           />
+                          <label
+                            class="form-check-label mb-0 m-1"
+                            for="customControlAutosizing1"
+                            >Définir comme ann&e courante</label
+                          >
+                        </div>
+                        <div class="form-group mb-3">
+                          <label class="mb-2"></label>
+                          <input type="hidden" formControlName="Supprime" class="form-control"
+                              />
+                      </div>
+                      </div>
+
+                      <button [disabled]="loading" type="submit" class="btn btn-success me-3">{{btnText}}</button>
+                      <button type="button" class="btn btn-outline-danger" (click)="btnCancel()">Annuler</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

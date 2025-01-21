@@ -1,0 +1,102 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="form-group mb-3">
+                <label class="mb-2">Libelle</label>
+                <input
+                  type="text"
+                  formControlName="nomDepartement"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && f['nomDepartement'].errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && f['nomDepartement'].errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f['nomDepartement'].errors">
+                    Le nom du departement est requis
+                  </div>
+                </div>
+              </div>
+              <!--    <div class="form-group mb-3">
+                <label class="mb-2">Drapeau</label>
+                <input
+                  type="file"
+                  formControlName="imageDrapeau"
+                  id="drapeau"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && f['imageDrapeau'].errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && f['imageDrapeau'].errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f['imageDrapeau'].errors">
+                    L'image du drapeau est requise
+                  </div>
+                </div>
+              </div>-->
+              <!---->
+              <!---->
+
+              <div class="form-group mb-3" data-select2-id="11">
+                <label class="mb-2">Selectionner le pays d'appartenance</label>
+                <select
+                  [compareWith]="compareData"
+                  formControlName="pays"
+                  id="pays"
+                  class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                  style="width: 100%; height: 36px"
+                  data-select2-id="1"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  [(ngModel)]="populateCombobox"
+                >
+                  <option
+                    *ngFor="let listItem of paysList"
+                    [ngValue]="listItem"
+                  >
+                    {{ listItem.nomPays }}
+                  </option>
+                </select>
+
+                <div
+                  *ngIf="submitted && f['pays'].errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f['pays'].errors">L'option est requise</div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="btn btn-success me-3"
+            >
+              {{ btnText }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
