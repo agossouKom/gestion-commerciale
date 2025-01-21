@@ -1,0 +1,95 @@
+<div
+  class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark"
+>
+  <div class="auth-box bg-dark border-top border-secondary">
+    <div id="loginform">
+      <div class="text-center pt-3 pb-3">
+        <span class="db"><img src="assets/images/logo.png" alt="logo" /></span>
+      </div>
+      <!-- Form -->
+      <form
+        [formGroup]="signinForm"
+        (ngSubmit)="loginUser()"
+        class="form-horizontal mt-3"
+        id="loginform"
+      >
+        <div class="row pb-4">
+          <div class="col-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span
+                  class="input-group-text bg-success text-white h-100"
+                  id="basic-addon1"
+                  ><i class="mdi mdi-account fs-4"></i
+                ></span>
+              </div>
+              <input
+                formControlName="username"
+                type="text"
+                class="form-control form-control-lg"
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                required
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span
+                  class="input-group-text bg-warning text-white h-100"
+                  id="basic-addon2"
+                  ><i class="mdi mdi-lock fs-4"></i
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="password"
+                type="password"
+                requiredtype="password"
+                class="form-control form-control-lg"
+                placeholder="Password"
+                aria-label="Password"
+                aria-describedby="basic-addon1"
+                required
+              />
+            </div>
+
+         
+
+  <!--    <div  *ngIf="!succes" class="isLoading">
+              <span  >{{ userNotExist}}</span>
+            </div> -->
+
+          </div>
+        </div>
+        <div class="mb-3">
+          <a routerLink="/register">Créer un compte</a>
+        </div>
+        <div class="row border-top border-secondary">
+          <div class="col-12">
+            <div class="form-group">
+              <div class="pt-3">
+                <button class="btn btn-info" id="to-recover" type="button">
+                  Mot de passe oublié?
+                </button>
+                <button
+                  class="btn btn-success float-end text-white"
+                  type="submit"
+                >
+                  <span *ngIf="!this.isLoading"> Se connecter</span>
+
+                  <div
+                    class="spinner-border spinner-border-sm text-light"
+                    role="status"
+                    *ngIf="this.isLoading"
+                  ></div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

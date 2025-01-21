@@ -1,0 +1,41 @@
+<div class="row d-flex justify-content-center" >
+  <div class="col-md-12" *ngIf="conditionnementvente">
+    <div class="card shadow" >
+      <div class="card-header border-bottom">
+        <div class="row">
+          <div class="col-md-10 arrierePlan">
+            <h4>
+              <h2>{{ showTitre }}</h2>
+            </h4>
+          </div>
+
+      </div>
+      <div class="card-body" >
+        <div class="row">
+
+
+            <div class="row">
+              <div class="col-md-3">
+                <label><b>Reference: </b></label> {{ conditionnementvente.marchandise?.designation_march }}
+              </div>
+
+            
+            </div>
+            <hr />
+
+       <!--     <div class="col-md-3">
+              <label><b>Fournisseur </b></label>
+              <div *ngFor="let dataList of conditionnementvente.uniteVente">
+                {{ dataList.nom_fsr }}
+              </div>
+            </div>-->
+
+      </div>
+    </div>
+
+  </div>
+  <button routerLink="/listeConditionnementvent" class="btn btn-primary arrierePlan">
+    Retour</button
+  ><br />
+</div>
+

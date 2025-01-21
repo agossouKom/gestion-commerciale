@@ -1,0 +1,115 @@
+<div class="container text-center">
+  <a routerLink="/devise/add" class="btn btn-success">
+    <i class="fas fa-user-plus"></i>
+  </a>
+</div>
+
+<section>
+  <div class="card shadow my-2">
+    <div class="card-header">
+      <div class="row flex-between-center">
+        <div class="col-md-4 d-flex align-items-center pe-0">
+          <h5 class="mb-0 text-nowrap py-2 py-xl-0">Devise(s)</h5>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="">
+              <input
+                type="search"
+                class="form-control checlBoxDam"
+                placeholder="Rechercher"
+                (input)="searchEmployees(searchInput.value)"
+                #searchInput
+              />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check mr-sm-2">
+              <input
+                type="checkbox"
+                (change)="toggleEditable($event)"
+                class="form-check-input mt-2"
+                id="customControlAutosizing1"
+              />
+              <label
+                class="form-check-label mb-0 m-1"
+                for="customControlAutosizing1"
+                >Afficher tout</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 ms-auto text-end ps-0">
+          <h6>Total : {{ totalrow }}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-0 m-3">
+      <div class="table-responsive">
+        <table class="table table-striped mb-0">
+          <thead class="arrierePlan">
+            <tr class="enteteTableau">
+              <th>Libelle</th>
+              <th>Abrégé</th>
+              <th style="display: none">Etat</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr
+              *ngFor="let dataApp of devise"
+              [style.background]="dataApp.supprime == true ? 'red' : 'white'"
+              [style.color]="dataApp.supprime == true ? 'white' : 'black'"
+            >
+              <td>{{ dataApp.libelleDevise }}</td>
+              <td>{{ dataApp.deviseAbrege }}</td>
+              <td style="display: none">{{ dataApp.supprime }}</td>
+
+              <td class="white-space-nowrap">
+                <a
+                  routerLink="/devise/edit/{{ dataApp.id }}"
+                  class="modifier"
+                  placement="bottom"
+                  title="Editer "
+                  *ngIf="dataApp.supprime == false"
+                >
+                  <i class="me-2 mdi mdi-grease-pencil"></i>
+                </a>
+                <a
+                  (click)="delete(dataApp)"
+                  class="supprimer"
+                  placement="bottom"
+                  title="Supprimer"
+                  *ngIf="dataApp.supprime == false"
+                >
+                  <i class="me-2 mdi mdi-delete"></i>
+                </a>
+                <button
+                  (click)="restore(dataApp)"
+                  class="supprimer"
+                  placement="bottom"
+                  title="Restaurer"
+                  *ngIf="dataApp.supprime == true"
+                >
+                <i class="me-2 mdi mdi-redo-variant"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="totalrow === 0">
+              <td class="dimension" colspan="5">
+               <div class="loader"></div>
+             </td>
+           </tr>
+           <tr *ngIf="this.checkLoading">
+            <td colspan="5">
+              <div class="alert">{{ message }}</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

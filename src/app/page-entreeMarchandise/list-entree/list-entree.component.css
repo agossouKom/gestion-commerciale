@@ -1,0 +1,47 @@
+.arrierePlan{
+  background-color: #063360;
+  color:white;
+}
+.table thead th {
+  color: #f0f3f5 !important;
+  font-weight: 700;
+}
+
+/**.table tr :hover{
+  background-color: #063360;
+  color: #f0f3f5 !important;
+
+}*/
+
+ .tbody  :hover{
+
+  color: #4b1be6 !important;
+
+}
+
+ .table th {
+  padding: 0.1rem!important;
+}
+
+
+
+.tbody td i{
+  /**height:0.5em ;
+  width:0.5em ;*/
+
+}
+.actif{
+  text-align: center !important;
+}
+
+a[title*="activer" ]
+{
+ color: #f8f4f4 !important;
+}
+a[title*="Editer"]
+{ }
+a[title*="supprimer"]
+{}
+a[title*="Detail"]
+{}
+

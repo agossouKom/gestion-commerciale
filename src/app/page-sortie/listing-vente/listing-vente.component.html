@@ -1,0 +1,132 @@
+<section>
+
+  <div class="card shadow my-2">
+
+
+
+    <div class="card-header">
+      <div class="row">
+
+        <div class="row">
+          <div class="col-md-4">
+
+            <button routerLink="/addSortie" class="btn btn-success">
+              <i class="fas fa-user-plus"></i><b>Ajouter sortie</b>
+            </button>
+
+          </div>
+
+          <div *ngIf="userRole" class="col-md-4">
+
+            <button routerLink="/addCommandeFournisseur" class="btn btn-success">
+              <i class="fas fa-user-plus"></i><b> Ajouter une entrée </b>
+            </button>
+
+          </div>
+
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary panierBtn" (click)="reportPage()" title="Générer la reference">
+              References tickets
+            </button>
+          </div>
+
+
+        </div>
+
+
+        <div class="col-md-4 d-flex align-items-center pe-0">
+          <h5 class="mb-0 text-nowrap py-2 py-xl-0">{{ titre }} / {{ libelleSite }} </h5>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="">
+              <input type="search" class="form-control checlBoxDam" placeholder="Rechercher" [(ngModel)]="searchText" />
+            </div>
+          </div>
+          <div *ngIf="userRole" class="col-md-4">
+            <div class="form-check mr-sm-2">
+              <input type="checkbox" (change)="afficherTouteLesDonnees($event)" class="form-check-input mt-2"
+                id="customControlAutosizing1" />
+              <label class="form-check-label mb-0 m-1" for="customControlAutosizing1">{{ afficherTout }}</label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-8 ms-auto text-end ps-0">
+          <h6>Total : {{ totalrow }}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-0 m-3">
+      <div class="table-responsive">
+        <table class="table table-striped mb-0">
+          <thead class="arrierePlan">
+            <th>DATE DE SORTIE</th>
+            <th>ARTICLE</th>
+            <th>QTE VENDUE</th>
+            <!-- <th  >DESIGNATION</th> -->
+            <th>MT TTC</th>
+            <th style="display: none">Etat</th>
+            <th>ACTIONS</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                let dataList of sortiesParSite
+
+                  | paginate
+                    : {
+                        itemsPerPage: rowPerPage,
+                        currentPage: p,
+                        totalItems: totalrow
+                      }
+              " [style.background]="dataList.supprime == true ? 'red' : 'white'"
+              [style.color]="dataList.supprime == true ? 'white' : 'black'">
+              <td>{{ dataList.datesortie |date:'dd/MM/yyyy' }}</td>
+              <td>{{ dataList.marchandise.designation_march }}</td>
+              <td>{{ dataList.qtesortie }}</td>
+              <!--              <td>{{ dataList.designa_article }}</td> -->
+
+              <td>{{ dataList.montantttc }}</td>
+
+              <td style="display: none">{{ dataList.supprime }}</td>
+              <td style="display: none">{{ dataList.supprime }}</td>
+              <td class="white-space-nowrap">
+                <a (click)="update(dataList.id)" placement="bottom" ngbTooltip="Editer"
+                  *ngIf="dataList.supprime == false">
+                  <i class="far fa-edit curseur"></i>
+                </a>
+                <a (click)="delete(dataList)" placement="bottom" ngbTooltip="Supprimer"
+                  *ngIf="dataList.supprime == false">
+                  <i *ngIf="userRole" class="fas fa-trash-alt curseur"></i>
+                </a>
+                <a (click)="restore(dataList)" placement="bottom" ngbTooltip="Restaurer"
+                  *ngIf="dataList.supprime == true">
+
+                  <i class="fas fa-redo curseur"></i>
+                </a>
+                <!--                 <a
+                  title="Détail"
+                  (click)="details(dataList.id)"
+
+                  *ngIf="dataList.supprime == false"
+                >
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                </a>-->
+
+              </td>
+            </tr>
+            <tr *ngIf="totalrow === 0">
+              <td class="dimension" colspan="5">
+                <div class="loader"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+  </div>
+
+</section>

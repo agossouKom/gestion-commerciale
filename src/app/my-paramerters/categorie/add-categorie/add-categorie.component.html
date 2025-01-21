@@ -1,0 +1,74 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="form-group mb-3">
+                <label class="mb-2">Nom de la categorie </label>
+                <input type="text" formControlName="lib_cat" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f['lib_cat'].errors }" />
+                <div *ngIf="submitted && f['lib_cat'].errors" class="invalid-feedback">
+                    <div *ngIf="f['lib_cat'].errors">Le nom de la categorie est requis</div>
+                </div>
+               </div>
+
+               <div class="form-group mb-3" data-select2-id="11">
+                <label class="mb-2">Précisez le rayon</label>
+                <select
+                  formControlName="rayonCategorie"
+                  id="rayonCategorie"
+                  class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                  style="width: 100%; height: 36px"
+                  data-select2-id="1"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                <option value="">--Select--</option>
+                  <option
+                    *ngFor="let listItem of rayonCategorie"
+                    [ngValue]="listItem"
+                  >
+                    {{ listItem.catRayon }}
+                  </option>
+                </select>
+                <div
+                  *ngIf="submitted && f['rayonCategorie'].errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f['rayonCategorie'].errors">
+                    L'option est requise
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="btn btn-success me-3"
+            >
+              {{ btnText }}
+            </button>
+            
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

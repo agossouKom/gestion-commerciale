@@ -1,0 +1,422 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <div class="row">
+            <div class="col-md-5">
+              <h4>- CAISSE -{{ libelleSite }}</h4>
+            </div>
+
+            <div class="col-md-4">
+              {{ refeTmp }}
+            </div>
+
+            <div
+              class="col-md-3"
+              *ngIf="appreciationState"
+              class="col-md-3 checkMontantRecuClass"
+            >
+              <span *ngIf="appreciationState" class="deTropValue">{{
+                appreciation
+              }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+
+            <div class="col-md-12">
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm text-white panierBtn"
+                  (click)="addToCat()"
+                  title="Ajouter au panier"
+                >
+                  <i class="me-2 mdi mdi-cart-plus"></i>
+                </button>
+
+                <button *ngIf="terminer"
+                  type="button"
+                  class="btn btn-primary btn-sm panierBtn"
+                  (click)="terminerBtn()"
+                  title="Cloturer la vente"
+                >
+                  Terminer
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm text-white panierBtn"
+                  (click)="annulerBtn()"
+                  title="Annuler la vente"
+                >
+                  <i class="me-2 mdi mdi-delete"></i>
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-info btn-sm panierBtn"
+                  (click)="genRef()"
+                  title="Générer la reference"
+                >
+                  <i class="fa fa-info-circle"></i>
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-info btn-sm panierBtn"
+                  (click)="reportPage()"
+                  title="Générer le ticket"
+                >
+                  <i class="me-2 mdi mdi-cloud-print-outline"></i>
+                </button>
+                <a *ngIf="finishToAddToCat" >
+                  <button
+                     (click)="onSubmit()"   *ngIf="isValidSold"
+                    type="submit"
+                    class="btn btn-success btn-sm text-white"
+                  >
+                    {{ btnText }}
+                  </button>
+                      </a>
+                  &nbsp;
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm text-white"
+                    (click)="btnCancel()"
+                  >
+                    Annuler
+                  </button>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div>
+              <label class="form-check-label mb-0" title="Le panier"
+                ><i class="me-2 mdi mdi-cart"></i> :
+              </label>
+              <span>{{ nbrArticle }}</span>
+              <label class="form-check-label mb-0" title="Stock disponible">
+                <label></label> <label></label>
+                Stock:
+              </label>
+              <span>{{ resteArticle }}</span>
+            </div>
+
+
+          </div>
+          <hr />
+          <!--     <div *ngIf="!genReference" class="row checkMontantRecuClass">
+            <span *ngIf="!genReference" class="deTropValue">{{ enAttrnteDeReference }}</span>
+          </div> -->
+
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-4 bgRelicat">
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Article/Marchandise</label>
+                  <select
+                    [compareWith]="compareData"
+                    formControlName="marchandise"
+                    id="marchandise"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px"
+                    data-select2-id="1"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    [(ngModel)]="selectedItem"
+                    (change)="getSelectedItemValue($event)"
+                  >
+                    <option value="">--Select--</option>
+                    <option
+                      *ngFor="let listItem of entreeMarchandise"
+                      [ngValue]="listItem"
+                    >
+                      {{ listItem.designation_march }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="submitted && f['marchandise'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['marchandise'].errors">
+                      L'option est requise
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row detailArt" *ngIf="isVisible">
+                  <div class="col-md-6">
+                    <div class="form-group mb-4">
+                      <label class="mb-2 bgLabel">unité de vente</label>
+                      <div *ngFor="let data of conditionnementvente" a>
+                        <div class="row">
+                          <div class="col-md-2">
+                            <input
+                              type="checkbox"
+                              name="{{ data.uniteVente?.unite }}"
+                              (change)="getUniteVenteCheckedValueId($event)"
+                              class="form-check-input mt-2 perso"
+                              id="{{ data.uniteVente?.id }}"
+                              value="{{ data.uniteVente?.unite }}"
+                              [disabled]="isActive"
+                            />
+                          </div>
+                          <div class="col-md-10">
+                            <label class="form-check-label mb-0 m-1">
+                              {{ data.uniteVente?.unite }}
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                  <div *ngIf="!uniteVenteIsChecked" class="stockState">
+                    <span *ngIf="!uniteVenteIsChecked" class="deTropValue">{{
+                      cocherUniteVente
+                    }}</span>
+                  </div>
+                  <br />
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label class="mb-2 bgLabel">Prix</label>
+                      <div *ngFor="let data of conditionnementvente">
+                        <label class="mb-2">
+                          {{ data.prixVente }}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group mb-3">
+                        <label class="mb-2">Quantité </label>
+                        <input
+                          type="number"
+                          formControlName="qtesortie"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f['qtesortie'].errors
+                          }"
+                          (keyup)="calculerPahtQte()"
+                          [(ngModel)]="qteAchetee"
+                        />
+                        <div
+                          *ngIf="submitted && f['qtesortie'].errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f['qtesortie'].errors">
+                            la quantité est requise
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8">
+                      <label class="mb-2">Reference </label><br />
+                      <div>
+                        {{ refeTmp }}
+                      </div>
+                    </div>
+                    <div *ngIf="stockState" class="stockState">
+                      <span *ngIf="stockState" class="deTropValue"
+                        >{{ stockStatemessage }}
+                        <a routerLink="/addCommandeFournisseur"
+                          >Entrées</a
+                        ></span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3" data-select2-id="11">
+                  <label class="mb-2">Client</label>
+                  <select
+                    [compareWith]="compareDataClient"
+                    formControlName="client"
+                    id="client"
+                    class="select2 form-select shadow-none select2-hidden-accessible form-control"
+                    style="width: 100%; height: 36px"
+                    data-select2-id="1"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                    <option value="">--Select--</option>
+                    <option
+                      *ngFor="let listItem of clients"
+                      [ngValue]="listItem"
+                    >
+                      {{ listItem.raisonSocialeClient }}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="isSuccesVente" class="effectueAvecSucces">
+                  <span *ngIf="isSuccesVente" class="deTropValue">{{
+                    message
+                  }}</span>
+                </div>
+              </div>
+
+              <div class="col-md-4 bgRelicat">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Montant recu</label>
+                  <input
+                    type="number"
+                    formControlName="montantrecu"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid': submitted && f['montantrecu'].errors
+                    }"
+                    (keyup)="calculeRelicat()"
+                    [(ngModel)]="montantRecu"
+                  />
+                  <div
+                    *ngIf="submitted && f['montantrecu'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['montantrecu'].errors">
+                      Le libell& est requis
+                    </div>
+                  </div>
+                  <div *ngIf="checkMontantRecu" class="checkMontantRecuClass">
+                    <span *ngIf="checkMontantRecu" class="deTropValue">{{
+                      messageMontantRecu
+                    }}</span>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="mb-2">Reliquat</label>
+                  <input
+                    type="number"
+                    formControlName="relica"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid': submitted && f['relica'].errors
+                    }"
+                    [(ngModel)]="reliqa"
+                  />
+                  <div
+                    *ngIf="submitted && f['relica'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['relica'].errors">Le libell& est requis</div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="mb-2">Remise</label>
+                  <input
+                    type="number"
+                    formControlName="remise"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid': submitted && f['remise'].errors
+                    }"
+                  />
+                  <div
+                    *ngIf="submitted && f['remise'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['remise'].errors">Le libell& est requis</div>
+                  </div>
+                </div>
+
+                <div class="row gbMontant">
+                  <div class="col-md-6">
+                    <label class="mb-2">M.HT : </label>
+                    <input
+                      type="number"
+                      formControlName="montantht"
+                      class="form-control"
+                      [(ngModel)]="paht"
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="mb-2">M.TTC : </label>
+                    <input
+                      type="number"
+                      formControlName="montantttc"
+                      class="form-control"
+                      [(ngModel)]="mTTC"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 bgRelicat">
+                Resumé
+                <hr />
+                <div class="row">
+                  <div class="col-md-3">Article</div>
+                  <div class="col-md-3">Qté</div>
+                  <div class="col-md-3">Mt HT</div>
+                  <div class="col-md-3">Mt TTC</div>
+                  <hr />
+                  <div class="row" *ngFor="let data of panier">
+                    <div class="col-md-3">
+                      {{ data.marchandise?.designation_march }}
+                    </div>
+                    <div class="col-md-3">{{ data.qtesortie }}</div>
+                    <div class="col-md-3">{{ data.montantht }}</div>
+                    <div class="col-md-3">{{ data.montantttc }}</div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-3">Total</div>
+                    <div class="col-md-3">{{ total }}</div>
+                    <div class="col-md-3">{{ somMtHt }}</div>
+                    <div class="col-md-3">{{ somMtTtc }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+
+
+          </form>
+
+
+<!--
+          <hr />
+   <div *ngIf="genReference" class="row Menubas">
+            <div class="col-md-2">
+              <a>Registre de vente</a>
+            </div>
+            <div class="col-md-2">
+              <a>Etat de caisse</a>
+            </div>
+            <div class="col-md-2">
+              <a>Dépenses</a>
+            </div>
+            <div class="col-md-2">
+              <a>Inspection</a>
+            </div>
+            <div class="col-md-2">
+              <a>Ticket</a>
+            </div>
+          </div>
+          <hr />
+
+
+   -->
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

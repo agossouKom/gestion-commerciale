@@ -1,0 +1,41 @@
+<section>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header border-bottom">
+                    <h4>{{title}}</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="form-group mb-3">
+                                <label class="mb-2">Libelle</label>
+                                <input type="text" formControlName="libelleDevise" class="form-control"
+                                       [ngClass]="{ 'is-invalid': submitted && f['libelleDevise'].errors }" />
+                                <div *ngIf="submitted && f['libelleDevise'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['libelleDevise'].errors">Le libelle est requis</div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="mb-2">Abrege</label>
+                                <input type="text" formControlName="deviseAbrege" class="form-control"
+                                       [ngClass]="{ 'is-invalid': submitted && f['deviseAbrege'].errors }" />
+                                <div *ngIf="submitted && f['deviseAbrege'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['deviseAbrege'].errors">Abrege est requis</div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                              <label class="mb-2"></label>
+                              <input type="hidden" formControlName="supprime" class="form-control"
+                                  />
+                          </div>
+                        </div>
+
+                        <button [disabled]="loading" type="submit" class="btn btn-success me-3">{{btnText}}</button>
+                        <button type="button" class="btn btn-outline-danger" (click)="btnCancel()">Annuler</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>

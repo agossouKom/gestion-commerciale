@@ -1,0 +1,62 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="row">
+
+              <div class="form-group mb-3">
+                <label class="mb-2">Libellé Banque</label>
+                <input type="text" formControlName="libelle_bk" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f['libelle_bk'].errors }" />
+                <div *ngIf="submitted && f['libelle_bk'].errors" class="invalid-feedback">
+                    <div *ngIf="f['libelle_bk'].errors">Le libellé est requis</div>
+                </div>
+               </div>
+
+               <div class="form-group mb-3">
+                <label class="mb-2">Abrégé du libellé</label>
+                <input type="text" formControlName="abrege" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f['abrege'].errors }" />
+                <div *ngIf="submitted && f['abrege'].errors" class="invalid-feedback">
+                    <div *ngIf="f['abrege'].errors">Le taux est requis</div>
+                </div>
+               </div>
+
+
+               <div class="form-group mb-3">
+                <label class="mb-2">Code de la Banque</label>
+                <input type="text" formControlName="code" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f['code'].errors }" />
+                <div *ngIf="submitted && f['code'].errors" class="invalid-feedback">
+                    <div *ngIf="f['code'].errors">Le code  est requis</div>
+                </div>
+               </div>
+
+            </div>
+
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="btn btn-success me-3"
+            >
+              {{ btnText }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

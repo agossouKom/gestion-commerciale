@@ -1,0 +1,33 @@
+.resume{
+color:rgb(38, 184, 12);
+}
+.entete{
+  color:rgba(255, 254, 254, 0.963);
+  }
+
+.resumePanel{
+  background-color: rgb(2, 2, 34);
+  color:rgba(255, 255, 254, 0.898);
+  border-radius:1px;
+  }
+
+.receptionPanel{
+    background-color: rgb(2, 2, 34);
+    color:rgba(255, 255, 254, 0.898);
+   border-radius:1px 1px 1px 1px;
+    border-left:6px solid white;
+    }
+     .reglement{
+      color:rgb(248, 247, 244);
+      }
+
+      .deTropValue{
+        color:rgb(248, 220, 6);
+        }
+
+        .recptionChecking{
+          background-color: rgb(250, 15, 15);
+          color:rgba(255, 255, 254, 0.898);
+         border-radius:1px 1px 1px 1px;
+         padding:10px;
+          }

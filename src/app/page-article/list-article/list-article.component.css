@@ -1,0 +1,14 @@
+.arrierePlan{
+    background-color: #063360;
+    color:white;
+  }
+  .table thead th {
+    color: #f0f3f5 !important;
+    font-weight: 700;
+  }
+
+  .table tr :hover{
+    background-color: #063360;
+    color: #f0f3f5 !important;
+
+  }

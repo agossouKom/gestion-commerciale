@@ -1,0 +1,67 @@
+
+
+<h2>Détails</h2>
+
+<hr />
+<div *ngIf="fournisseur">
+  <div>
+    <label><b>Raison sociale : </b></label> {{fournisseur.nomFsr}}
+  </div>
+  <div>
+    <label><b>Adresse: </b></label> {{fournisseur.adresse_fsr}}
+  </div>
+  <div>
+    <label><b>Téléphone: </b></label> {{fournisseur.tel_fsr}}
+  </div>
+
+  <div>
+    <label><b>Faxe: </b></label> {{fournisseur.fax_fsr}}
+  </div>
+  <div>
+    <label><b>Matricule fiscal: </b></label> {{fournisseur.matfisc_fsr}}
+  </div>
+  <div>
+    <label><b>Sold init: </b></label> {{fournisseur.sold_init_fsr}}
+  </div>
+
+  <div>
+    <label><b>Solde final: </b></label> {{fournisseur.solde_final_fsr}}
+  </div>
+  <div>
+    <label><b>Franco: </b></label> {{fournisseur.franco}}
+  </div>
+  <div>
+    <label><b>Email : </b></label> {{fournisseur.email_fsr}}
+  </div>
+  <div>
+    <label><b>Date de créatioon: </b></label> {{fournisseur.created_fsr_at}}
+  </div>
+
+
+
+
+  <label><b>Banque: </b></label>
+  <div *ngFor="let dataList of banqueListes">
+   {{dataList.libelle_bk}}
+  </div>
+
+
+
+  <label><b>Devise: </b></label>
+  <div *ngFor="let dataList of devise">
+    {{dataList.deviseAbrege}}
+  </div>
+
+  <div>
+    <label><b>Pays: </b></label> {{fournisseur.pays?.nomPays}}
+  </div>
+
+
+</div>
+
+<br>
+<br>
+<button routerLink="/listFournisseur" class="btn btn-primary">Retour</button><br>
+
+
+

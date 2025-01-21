@@ -1,0 +1,114 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+
+                    <label class="mb-2">NOM</label>
+                    <input type="text" formControlName="nom_fdtr" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f['nom_fdtr'].errors }" />
+                    <div *ngIf="submitted && f['nom_fdtr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['nom_fdtr'].errors">Le nom est requis</div>
+                    </div>
+                   </div>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label class="mb-2">PRENOMS</label>
+                    <input type="text" formControlName="prenom_fdtr" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f['prenom_fdtr'].errors }" />
+                    <div *ngIf="submitted && f['prenom_fdtr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['prenom_fdtr'].errors">Le prenom est requis</div>
+                    </div>
+                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label class="mb-2">TEL 1</label>
+                    <input type="tel" formControlName="tel1_fdtr" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f['tel1_fdtr'].errors }" />
+                    <div *ngIf="submitted && f['tel1_fdtr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['tel1_fdtr'].errors">Le numéro de téléphone   est requis</div>
+                    </div>
+                   </div>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label class="mb-2">TEL 2</label>
+                    <input type="tel" formControlName="tel2_fdtr" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f['tel2_fdtr'].errors }" />
+                    <div *ngIf="submitted && f['tel2_fdtr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['tel2_fdtr'].errors">Le  numéro de téléphone  est requis</div>
+                    </div>
+                   </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+
+                  <div class="form-group mb-3">
+                    <label class="mb-2">EMAIL</label>
+                    <input type="email" formControlName="email_fdtr" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f['email_fdtr'].errors }" />
+                    <div *ngIf="submitted && f['email_fdtr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email_fdtr'].errors">ce  champ  est requis</div>
+                    </div>
+                   </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group mb-3">
+                    <label class="mb-2">FONCTION</label>
+                    <input type="text" formControlName="fonction_fdtr" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f['fonction_fdtr'].errors }" />
+                    <div *ngIf="submitted && f['fonction_fdtr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['fonction_fdtr'].errors">ce  champ  est requis</div>
+                    </div>
+                   </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group mb-3">
+                    <label class="mb-2">PART EN %</label>
+                    <input type="number" formControlName="part_fdtr" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f['part_fdtr'].errors }" />
+                    <div *ngIf="submitted && f['part_fdtr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['part_fdtr'].errors">ce  champ  est requis</div>
+                    </div>
+                   </div>
+                </div>
+              </div>
+
+
+
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="btn btn-success me-3"
+            >
+              {{ btnText }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="btnCancel()"
+            >
+              Annuler
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

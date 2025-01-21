@@ -1,0 +1,123 @@
+
+<div class="container text-center">
+  <a routerLink="/addModeTransport" class="btn btn-success">
+    <i class="fas fa-user-plus"></i>
+  </a>
+</div>
+<section>
+  <div class="card shadow my-2">
+    <div class="card-header">
+      <div class="row flex-between-center">
+        <div class="col-md-4 d-flex align-items-center pe-0">
+          <h5 class="mb-0 text-nowrap py-2 py-xl-0">{{titre}}</h5>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="">
+
+              <input
+                type="search"
+                class="form-control checlBoxDam"
+                placeholder="Rechercher"
+                [(ngModel)]="searchText"
+
+              />
+
+            </div>
+
+
+          </div>
+          <div class="col-md-4">
+            <div class="form-check mr-sm-2">
+              <input
+                type="checkbox"
+                (change)="afficherTouteLesDonnees($event)"
+                class="form-check-input mt-2"
+                id="customControlAutosizing1"
+              />
+              <label
+                class="form-check-label mb-0 m-1"
+                for="customControlAutosizing1"
+                >{{afficherTout}}</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 ms-auto text-end ps-0">
+          <h6>Total : {{ totalrow }}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-0 m-3">
+      <div class="table-responsive">
+        <table class="table table-striped  mb-0">
+          <thead class="arrierePlan">
+            <th style="display: none">ID</th>
+            <th>Mode de transport</th>
+
+            <th style="display: none">Etat</th>
+            <th>ACTIONS</th>
+          </thead>
+          <tbody class="tbody">
+            <tr
+              *ngFor="let dataList of modeTransport| customFilter : searchText  | paginate: {
+                itemsPerPage: 10,
+                currentPage: p,
+                totalItems: totalrow
+              }"
+              [style.background]="dataList.supprime == true ? 'red' : 'white'"
+              [style.color]="dataList.supprime == true ? 'white' : 'black'"
+            >
+             <td>{{ dataList.lib_transp }}</td>
+
+            <td style="display: none">{{ dataList.supprime }}</td>
+            <td class="white-space-nowrap">
+                <a  (click)="update(dataList.id)"
+                class="modifier"
+                placement="bottom"
+                title="Editer "
+                  ngbTooltip="Editer"
+                  *ngIf="dataList.supprime == false"
+                >
+                  <i class="far fa-edit"></i>
+                </a>
+                <a
+                  (click)="delete(dataList)"
+
+                  class="supprimer"
+                  placement="bottom"
+                  title="Supprimer"
+                  *ngIf="dataList.supprime == false"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+                <a
+                  (click)="restore(dataList)"
+                  class="supprimer"
+                  placement="bottom"
+                  title="Restaurer"
+                  *ngIf="dataList.supprime == true"
+                >
+                  <i class="fas fa-redo"></i>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="totalrow === 0">
+              <td class="dimension" colspan="5">
+               <div class="loader"></div>
+             </td>
+           </tr>
+           <tr *ngIf="this.checkLoading">
+            <td colspan="5">
+              <div class="alert">{{ message }}</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+  </div>
+</section>

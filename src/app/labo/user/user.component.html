@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            Reusable Table Component
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                     <app-my-table-helper
+                     [HeadArray]="headArray"
+                     [GridArray]="usersList"
+                     (onEdit)="editUser($event)"
+                     (onDelete)="deleteUser($event)">
+                    </app-my-table-helper>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,96 @@
+
+.titre{
+  color:blue;
+  text-align: center;
+  }
+  #toast-container>div{
+    opacity: 1;
+    color:blue;
+  }
+  .ref{
+    display:none;
+  }
+
+  .detailArt{
+    background-color: hwb(240 2% 81%);
+  color:rgb(255, 255, 255);
+  padding:10px;
+  }
+ 
+  .bgRelicat{
+    background-color: hwb(240 2% 81%);
+  color:rgb(247, 242, 242);
+  padding:10px;
+  }
+
+
+  
+.bgRelicat{
+  background-color: rgb(2, 2, 34);
+  color:rgba(255, 255, 254, 0.898);
+ border-radius:1px 1px 1px 1px;
+  border-left:6px solid white;
+  }
+  .Menubas{
+    background-color: rgb(2, 2, 34);
+    color:rgba(255, 255, 254, 0.898);
+   border-radius:1px 1px 1px 1px;
+    border-left:6px solid white;
+    padding:10px;
+    }
+    .resumeStock{
+      background-color: rgba(248, 240, 168, 0.899);
+      color:rgba(7, 7, 1, 0.898);
+     border-radius:1px 1px 1px 1px;
+      border-left:6px solid white;
+      padding:10px;
+      }
+.action{
+  background-color: rgba(253, 253, 249, 0.899);
+  color:rgba(7, 7, 1, 0.898);
+ border-radius:1px 1px 1px 1px;
+  border-left:6px solid white;
+  padding:10px;
+  }
+    .deTropValue{
+      color:rgb(255, 254, 251);
+      }
+
+      .effectueAvecSucces{
+        background-color: rgb(2, 75, 30);
+        color:rgba(255, 255, 254, 0.898);
+       border-radius:1px 1px 1px 1px;
+        border-left:6px solid white;
+        padding:10px;
+        }
+
+
+        .checkMontantRecuClass{
+          background-color: rgb(247, 6, 6);
+          color:rgba(255, 255, 254, 0.898);
+         border-radius:1px 1px 1px 1px;
+          border-left:6px solid white;
+          padding:10px;
+          }
+
+          .stockState{
+            background-color: rgb(247, 6, 6);
+            color:rgba(255, 255, 254, 0.898);
+           border-radius:1px 1px 1px 1px;
+            border-left:6px solid white;
+            padding:10px;
+            }
+
+            .panierBtn{
+              margin:5px;
+            }
+
+ button[title*="activer" ] 
+{ 
+ color: #f8f4f4 !important;
+}
+
+label[title*="activer" ] 
+{ 
+ color: #f8f4f4 !important;
+}

@@ -1,0 +1,203 @@
+<section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header border-bottom">
+          <h4>{{ title1 }}</h4>
+        </div>
+
+
+        <!--<div  *ngIf="checkIfReceptionExist" class="recptionChecking">
+          <span *ngIf="checkIfReceptionExist" class="textCol">{{ messageVerificationReception}}</span>
+        </div>-->
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 resumePanel">
+              <h4 class="entete">Résumé de la commande</h4>
+              <hr />
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="resume"><b>Reference: </b></label>
+                  {{ entreeMarchandise?.refentree }}
+                </div>
+                <!-- CRED: Credits -->
+                <div class="col-md-12">
+                  <label class="resume"><b>Designation: </b></label>
+                  {{ entreeMarchandise?.marchandiseentree?.designation_march }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Fournisseur: </b></label>
+                  {{ entreeMarchandise?.fournisseur?.nomFsr }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Date commande: </b></label>
+                  {{ entreeMarchandise?.dateentree }}
+                </div>
+
+                <div class="col-md-12">
+                  <label class="resume"><b>Quantité: </b></label>
+                  {{ entreeMarchandise?.qteentree }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Prix unitaire: </b></label>
+                  {{ montant}}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Montant HT: </b></label>
+                  {{ entreeMarchandise?.montant_e_ht }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Montant total: </b></label>
+                  {{ entreeMarchandise?.montantTotalentree }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Montant TTC: </b></label>
+                  {{ entreeMarchandise?.montant_e_ttc }}
+                </div>
+
+                <div class="col-md-12">
+                  <label class="resume"><b>Mode de reglement: </b></label>
+                  {{ entreeMarchandise?.modeReglement?.lib_mode_rglt }}
+                </div>
+                <hr />
+                <div class="col-md-12">
+                  <label class="resume"><b>Ech&ance paiement: </b></label>
+                  {{ entreeMarchandise?.echeance }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Statut reception: </b></label>
+                  {{
+                  entreeMarchandise?.estReceptioned == true
+                  ? "Déjà receptionnée"
+                  : "Non receptionnée"
+                  }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Statut facturation: </b></label>
+                  {{
+                  entreeMarchandise?.estFacturer == true ? "Payé" : "Impayé"
+                  }}
+                </div>
+                <div class="col-md-12">
+                  <label class="resume"><b>Taxable: </b></label>
+                  {{
+                  entreeMarchandise?.marchandiseentree?.exonore == true
+                  ? "Exonoré"
+                  : "Non exonoré"
+                  }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 receptionPanel">
+              <h4 class="reglement">Reception et paiement de la commande</h4>
+              <hr />
+              <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label class="mb-2">Quantité commandée</label>
+                      <input type="number" formControlName="quantite" class="form-control" [ngClass]="{
+                          'is-invalid':
+                            submitted && f['quantite'].errors
+                        }" />
+                      <div *ngIf="submitted && f['quantite'].errors" class="invalid-feedback">
+                        <div *ngIf="f['quantite'].errors">
+                          Le libellé est requis
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label class="mb-2">Stock</label>
+                      <input type="number" formControlName="stock" class="form-control" [ngClass]="{
+                          'is-invalid':
+                            submitted && f['stock'].errors
+                        }" />
+                      <div *ngIf="submitted && f['stock'].errors" class="invalid-feedback">
+                        <div *ngIf="f['stock'].errors">
+                          Le libellé est requis
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label class="mb-2">Quantité déjà recue</label>
+                      <input type="number" formControlName="qtedejarecu" class="form-control" [ngClass]="{
+                          'is-invalid':
+                            submitted && f['qtedejarecu'].errors
+                        }" />
+                      <div *ngIf="submitted && f['qtedejarecu'].errors" class="invalid-feedback">
+                        <div *ngIf="f['qtedejarecu'].errors">
+                          Le libellé est requis
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label class="mb-2">Reception de {{ receptionOf }} sur {{ quantiteVar }} </label>
+                      <input type="number" formControlName="qteactuelCmd" class="form-control" [ngClass]="{
+                          'is-invalid':
+                            submitted && f['qteactuelCmd'].errors
+                        }" (keyup)="receptionOfCmd($event)" />
+                      <div *ngIf="submitted && f['qteactuelCmd'].errors" class="invalid-feedback">
+                        <div *ngIf="f['qteactuelCmd'].errors">
+                          Le libellé est requis
+                        </div>
+                      </div>
+                      <span *ngIf="deTropValue" class="deTropValue">{{message}}</span>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group mb-3">
+                      <label class="mb-2">La facture est normalisée</label><br />
+                      <input formControlName="normalized" type="checkbox" (change)="estNormaliser($event)"
+                        class="form-check-input mt-2" id="customControlAutosizing1" />
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-outline-danger" (click)="btnCancel()">
+                      Annuler
+                    </button>
+
+                  </div>
+
+                  <div *ngIf="!deTropValue" class="col-md-6">
+                    <button [disabled]="loading" type="submit" class="btn btn-success">
+                      {{ btnText }}
+                    </button>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

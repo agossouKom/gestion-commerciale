@@ -1,0 +1,19 @@
+.bgDiv{
+  background-color:rgb(15, 13, 118);
+  color:white;
+  
+  }
+
+
+  .selectedValue{
+    background-color: rgb(247, 6, 6);
+    color:rgba(255, 255, 254, 0.898);
+   border-radius:1px 1px 1px 1px;
+    border-left:6px solid white;
+    padding:10px;
+    }
+    .Selectionnez{
+     
+      color:rgba(238, 7, 7, 0.898);
+
+      }

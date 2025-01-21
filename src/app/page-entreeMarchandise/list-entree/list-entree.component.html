@@ -1,0 +1,143 @@
+<section>
+  <div class="card shadow my-2">
+    <div class="card-header">
+      <div class="row flex-between-center">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="container text-center">
+              <h3>{{ siteName }}</h3>
+            </div>
+          </div>
+
+        </div>
+        <hr />
+
+
+        <div class="col-md-4 d-flex align-items-center pe-0">
+          <h5 class="mb-0 text-nowrap py-2 py-xl-0">{{ titre }}</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="">
+              <input type="search" class="form-control checlBoxDam" placeholder="Rechercher" [(ngModel)]="searchText" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check mr-sm-2">
+              <input type="checkbox" (change)="afficherTouteLesDonnees($event)" class="form-check-input mt-2"
+                id="customControlAutosizing1" />
+              <label class="form-check-label mb-0 m-1" for="customControlAutosizing1">{{ afficherTout }}</label>
+            </div>
+
+          </div>
+          <div class="col-md-2">
+
+            <a routerLink="/addCommandeFournisseur" class="btn btn-success">
+              <i class="fas fa-user-plus"></i><b> Ajouter </b>
+            </a>
+
+          </div>
+        </div>
+        <div class="col-md-8 ms-auto text-end ps-0">
+          <h6>Total : {{ totalrow }}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-0 m-3">
+      <div class="table-responsive">
+        <table class="table table-striped mb-0">
+          <thead class="arrierePlan">
+            <th>REFERENCE</th>
+            <th>DESIGNATION </th>
+            <th>QUANTITE</th>
+            <th>DATE COMMANDE</th>
+
+            <!--    <th>RECEPTIONNEE?</th>
+              -->
+            <th>DATE DE RECEPTION</th>
+            <th>FACTURATION?</th>
+            <th style="display: none">Etat</th>
+            <th>ACTIONS</th>
+          </thead>
+          <tbody class="tbody">
+            <tr *ngFor="
+                let dataList of marchandise
+                  | customFilter : searchText
+                  | paginate
+                    : {
+                        itemsPerPage:25,
+                        currentPage: p,
+                        totalItems: totalrow
+                      }
+              " [style.background]="dataList.supprime == true ? 'red' : 'white'"
+              [style.color]="dataList.supprime == true ? 'white' : 'black'">
+              <td>{{ dataList.refentree }}</td>
+              <td>{{ dataList.marchandiseentree?.designation_march }}</td>
+              <td>{{ dataList.qteentree }}</td>
+              <td>{{ dataList.dateentree |date:'dd/MM/yyyy'}}</td>
+
+
+              <!--        <td
+              [style.background]=" dataList.estReceptioned == true ? 'green' : 'RED' "
+              [style.color]="dataList.estReceptioned == true ? 'white' : 'white'"
+            >
+              <a  (click)="conditionnementVente(dataList.id)"    title="Cliquez pour receptionner" >
+                {{ dataList.estReceptioned == true ? "Receptionnée" : "En attente..." }} <i class="me-2 mdi mdi-grease-pencil"></i>
+              </a>
+            </td>
+              -->
+
+              <td>{{ dataList.dateReception |date:'dd/MM/yyyy'}}</td>
+
+              <td [style.background]="
+                  dataList.estFacturer == true ? 'green' : 'RED'
+                " [style.color]="dataList.estFacturer == true ? 'white' : 'white'">
+                <a (click)="receptionCmd(dataList.identree)" title="Cliquez pour payer">
+                  {{ dataList.estFacturer == true ? "Payé" : "Impayé" }} <i class="me-2 mdi mdi-grease-pencil"></i>
+                </a>
+              </td>
+
+              <td style="display: none">{{ dataList.supprime }}</td>
+              <td class="white-space-nowrap">
+                <a (click)="update(dataList.identree)" class="modifier" placement="bottom" title="Editer "
+                  *ngIf="dataList.supprime == false">
+                  <i class="me-2 mdi mdi-grease-pencil"></i>
+                </a>
+                <a (click)="delete(dataList)" class="supprimer" placement="bottom" title="Supprimer"
+                  *ngIf="dataList.supprime == false">
+                  <i class="me-2 mdi mdi-delete"></i>
+                </a>
+                <a (click)="restore(dataList)" class="supprimer" placement="bottom" title="Restaurer"
+                  *ngIf="dataList.supprime == true">
+                  <i class="me-2 mdi mdi-redo-variant"></i>
+                </a>
+
+                <!--
+
+              <a
+                  title="Détail"
+                  (click)="details(dataList.identree)"
+                  class="detail"
+                  *ngIf="dataList.supprime == false"
+                >
+                <i class="me-2 mdi mdi-eye"></i>
+                </a>
+          -->
+
+              </td>
+
+
+            </tr>
+            <tr *ngIf="totalrow === 0">
+              <td class="dimension" colspan="5">
+                <div class="loader"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+  </div>
+
+</section>
